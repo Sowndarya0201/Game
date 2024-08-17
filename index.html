@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+
+    <title>Online Movie Booking</title>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #000; /* Set background to black */
+            margin: 0;
+            padding: 0;
+            color: #c0c0c0; /* Light gray text for better readability */
+        }
+        .container {
+            width: 80%;
+            margin: auto;
+            overflow: hidden;
+        }
+        header {
+            background-color: #000; /* Black header */
+            color: #fff;
+            padding-top: 30px;
+            min-height: 70px;
+            border-bottom: #4CAF50 3px solid; /* Dark green underline */
+        }
+        header a {
+            color: #fff;
+            text-decoration: none;
+            text-transform: uppercase;
+            font-size: 16px;
+        }
+        header ul {
+            padding: 0;
+            list-style: none;
+        }
+        header ul li {
+            display: inline;
+            padding: 0 20px 0 20px;
+        }
+        #showcase {
+            background: #000;
+            color: #fff;
+            height: 400px;
+            text-align: center;
+            padding-top: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden; /* Hide overflow */
+            position: relative;
+        }
+        .carousel-container {
+            display: flex;
+            gap: 10px;
+            transition: transform 0.5s ease-in-out;
+        }
+        .carousel-container img {
+            width: 600px; /* Fixed width */
+            height: 300px; /* Fixed height */
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        }
+        .carousel-wrapper {
+            width: 100%;
+            overflow-x: scroll;
+            scroll-behavior: smooth;
+        }
+        .booking-form {
+            background: rgba(0, 128, 0, 0.7); /* Transparent dark green */
+            padding: 20px;
+            margin-top: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            border-radius: 10px;
+        }
+        .booking-form h2 {
+            margin-bottom: 20px;
+            color: #4CAF50; /* Dark green text */
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            color: #c0c0c0; /* Light gray labels */
+        }
+        .form-group select,
+        .form-group input {
+            width: 100%;
+            padding: 10px;
+            box-sizing: border-box;
+            background: #333; /* Dark background for inputs */
+            color: #fff; /* White text for inputs */
+            border: 1px solid #4CAF50; /* Dark green border */
+            border-radius: 5px;
+        }
+        .btn {
+            display: inline-block;
+            background: #4CAF50; /* Dark green button */
+            color: #fff;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            cursor: pointer;
+            border: none;
+            transition: background 0.3s;
+        }
+        .btn:hover {
+            background: #45a049; /* Slightly lighter green on hover */
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <h1>Movie Booking</h1>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Movies</a></li>
+                <li><a href="#">Booking</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <section id="showcase">
+        <div class="container carousel-wrapper">
+            <!-- Scrolling Carousel with 5 Images -->
+            <div class="carousel-container">
+                <img src="C:\Users\Selva\OneDrive\Pictures\Camera Roll\pic1.webp" alt="Movie 1">
+                <img src="C:\Users\Selva\OneDrive\Pictures\Camera Roll\pic2.webp" alt="Movie 2">
+                <img src="C:\Users\Selva\OneDrive\Pictures\Camera Roll\pic3.webp" alt="Movie 3">
+                <img src="C:\Users\Selva\OneDrive\Pictures\Camera Roll\pic4.webp" alt="Movie 4">
+                <img src="C:\Users\Selva\OneDrive\Pictures\Camera Roll\pic5.webp" alt="Movie 5">
+            </div>
+        </div>
+    </section>
+
+    <div class="container">
+        <div class="booking-form">
+            <h2>Book a Movie</h2>
+            <form id="bookingForm">
+                <div class="form-group">
+                    <label for="movie">Select Movie</label>
+                    <select id="movie" name="movie">
+                        <option value="barbie">Barbie</option>
+                        <option value="oppenheimer">Oppenheimer</option>
+                        <option value="mission_impossible_7">Mission: Impossible – Dead Reckoning Part One</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="date">Select Date</label>
+                    <input type="date" id="date" name="date">
+                </div>
+                <div class="form-group">
+                    <label for="time">Select Time</label>
+                    <select id="time" name="time">
+                        <option value="10am">10:00 AM</option>
+                        <option value="1pm">1:00 PM</option>
+                        <option value="4pm">4:00 PM</option>
+                        <option value="7pm">7:00 PM</option>
+                        <option value="10pm">10:00 PM</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="seats">Number of Seats</label>
+                    <input type="number" id="seats" name="seats" min="1" max="10">
+                </div>
+                <button type="button" class="btn" onclick="submitForm()">Book Now</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        function submitForm() {
+            // Collect form data
+            const movie = document.getElementById('movie').value;
+            const date = document.getElementById('date').value;
+            const time = document.getElementById('time').value;
+            const seats = document.getElementById('seats').value;
+
+            // Construct message
+            const message = `Your ticket has been booked!\n\nMovie: ${movie}\nDate: ${date}\nTime: ${time}\nSeats: ${seats}`;
+
+            // Show alert with booking details
+            alert(message);
+
+            // Optionally, you can reset the form here if needed
+            document.getElementById('bookingForm').reset();
+        }
+    </script>
+
+</body>
+</html>
